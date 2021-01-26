@@ -1,0 +1,46 @@
+Invite
+https://discord.com/api/oauth2/authorize?client_id=760978526680776754&permissions=9216&scope=bot
+
+The access control list on shellsrv is the same one used by AberVerify. so just use the 
+!veryif-add xyz12 command to add someone.
+
+On shellsrv
+ssh nns@shellsrv.dcs.aber.ac.uk 
+
+The code is here:
+cd /dcs/nns/Discord/HereBot
+
+systemctl --user stop  herebot
+systemctl --user start  herebot
+
+ps -augx |grep nns 
+
+To update the code only:
+On Mac
+cd /Users/nealsnooke/RESEARCH/PROTOTYPES/AttendanceBot 
+scp herebot.js nns@shellsrv.dcs.aber.ac.uk:Discord/AttendanceBot/.
+scp heretools.js nns@shellsrv.dcs.aber.ac.uk:Discord/AttendanceBot/.
+
+To install the whole bot:
+scp AberHereBot.zip nns@shellsrv.dcs.aber.ac.uk:Discord/AberHereBot.zip
+
+ssh nns@shellsrv.dcs.aber.ac.uk 
+
+cd Discord/
+unzip AberHereBot.zip
+
+To test it (without a background service):
+cd /dcs/nns/Discord/AberHereBot
+shellsrv:DiscordBotMuddy> node herebot.js 
+
+Setting up serviced 
+Create ~/.config/systemd/user and put your .service file (below) in there.
+
+The service files are here:
+cd /dcs/nns/.config/systemd/user
+
+You should then be able to do the following to start the service:
+
+systemctl --user enable herebot
+systemctl --user disable herebot
+
